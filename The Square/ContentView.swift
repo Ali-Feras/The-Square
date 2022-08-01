@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var timeRemaining = 30
+       let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State var score = 0
     @State var lives = 3
     @State var x = 100.0
@@ -16,7 +18,6 @@ struct ContentView: View {
     @State var selectedColor: Color = .blue
     @State var timerRunning = false
     @State var thing = ""
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     let maxX = UIScreen.main.bounds.width
     let maxY = UIScreen.main.bounds.height
     
@@ -24,6 +25,13 @@ struct ContentView: View {
     var body: some View {
         VStack {
             Text("Tap the square")
+            Text("Timer: \(timeRemaining)")
+                       .onReceive(timer) { _ in
+                           if timeRemaining > 0 {
+                               timeRemaining -= 1
+                           }
+                       }
+                .font(.title)
             RoundedRectangle(cornerRadius: 0)
             .frame(width: 70, height: 70, alignment: .center)
             .position(x: x, y: y)
@@ -32,7 +40,7 @@ struct ContentView: View {
                 selectedColor = getRandomColor()
                 score += 1
                 x = Double.random(in: 100...(maxX - 100))
-                y = Double.random(in: 100...(maxY - 200))
+                y = Double.random(in: 100...(maxY - 300))
               }
             
             HStack {
@@ -67,7 +75,7 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             ContentView()
-                .previewInterfaceOrientation(.landscapeRight)
+                .previewInterfaceOrientation(.portrait)
             ContentView()
         }
     }

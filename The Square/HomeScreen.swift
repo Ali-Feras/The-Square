@@ -8,13 +8,19 @@
 import SwiftUI
 
 struct HomeScreen: View {
+    @State var time = 30
     var body: some View {
-        Text("The Square")
-            .font(.title)
-            .fontWeight(.bold)
-            .font
-    }
-}
+        NavigationView {
+                VStack {
+            Text("The Square")
+                .font(.title)
+                .fontWeight(.bold)
+                .padding(20)
+                    Spacer()
+                    }
+                }
+            }
+        }
 
 struct HomeScreen_Previews: PreviewProvider {
     static var previews: some View {
