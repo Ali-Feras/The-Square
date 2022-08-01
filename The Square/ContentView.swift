@@ -8,9 +8,27 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var score = 0
+    @State var x = 100.0
+    @State var y = 100.0
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    let maxX = UIScreen.main.bounds.width
+    let maxY = UIScreen.main.bounds.height
+    
+    
     var body: some View {
-        Text("Hello, world!")
+        Text("Tap the square")
             .padding()
+        Text("Score: \(score)")
+            .font(.title)
+            .onReceive(timer) { _ in
+                x = Double.random(in: 100...(maxX - 100))
+                y = Double.random(in: 100...(maxY - 200))
+            }
+            .position(x: x, y: y)
+            .onTapGesture {
+                score += 1
+            }
     }
 }
 
