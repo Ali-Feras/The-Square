@@ -24,13 +24,11 @@ struct ContentView: View {
             .fontWeight(.bold)
         RoundedRectangle(cornerRadius: 0)
             .frame(width: 50, height: 50, alignment: .center)
-            .onReceive(timer) { _ in
-                x = Double.random(in: 100...(maxX - 100))
-                y = Double.random(in: 100...(maxY - 200))
-            }
             .position(x: x, y: y)
             .onTapGesture {
                 score += 1
+                x = Double.random(in: 100...(maxX - 100))
+                y = Double.random(in: 100...(maxY - 200))
             }
     }
 }
