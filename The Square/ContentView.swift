@@ -25,7 +25,7 @@ struct ContentView: View {
         VStack{
             Text("Tap the square")
             RoundedRectangle(cornerRadius: 0)
-                .frame(width: 100, height: 100, alignment: .center)
+                .frame(width: 70, height: 70, alignment: .center)
                 .position(x: x, y: y)
                 .foregroundColor(selectedColor)
                 .onTapGesture {
@@ -34,26 +34,26 @@ struct ContentView: View {
                     x = Double.random(in: 100...(maxX - 100))
                     y = Double.random(in: 100...(maxY - 200))
                 }
-        }
-        
-        HStack{
-        Text("Score: \(score)")
-            .font(.title)
-            .fontWeight(.bold)
-            .position(x: 70, y: 300)
-        Text("Lives: \(lives)")
-                .font(.title)
-                .fontWeight(.bold)
-                .position(x: 120, y: 300)
-                .padding(2)
+            
+            HStack{
+                Text("Score: \(score)")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .position(x: 70, y: 300)
+                Text("Lives: \(lives)")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .position(x: 120, y: 300)
+                    .padding(2)
+            }
         }
     }
     func getRandomColor() -> Color {
-         let red:CGFloat = CGFloat(drand48())
-         let green:CGFloat = CGFloat(drand48())
-         let blue:CGFloat = CGFloat(drand48())
-
-         return Color(red:red, green: green, blue: blue)
+        let red:CGFloat = CGFloat(drand48())
+        let green:CGFloat = CGFloat(drand48())
+        let blue:CGFloat = CGFloat(drand48())
+        
+        return Color(red:red, green: green, blue: blue)
     }
     
     func resetGame(){
@@ -66,7 +66,7 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             ContentView()
-                .previewInterfaceOrientation(.portraitUpsideDown)
+                .previewInterfaceOrientation(.landscapeRight)
             ContentView()
         }
     }
