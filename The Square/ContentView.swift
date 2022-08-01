@@ -11,11 +11,14 @@ struct ContentView: View {
     @State var score = 0
     @State var x = 100.0
     @State var y = 100.0
-    @State var selectedColor: Color = .black
+    @State var time = 30
+    @State var selectedColor: Color = .blue
+    @State var timerRunning = false
+    @State var thing = ""
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     let maxX = UIScreen.main.bounds.width
     let maxY = UIScreen.main.bounds.height
-    let color = [17, 30, 50, 8, 10]
+    
     
     var body: some View {
         Text("Tap the square")
@@ -24,7 +27,7 @@ struct ContentView: View {
             .font(.title)
             .fontWeight(.bold)
         RoundedRectangle(cornerRadius: 0)
-            .frame(width: 50, height: 50, alignment: .center)
+            .frame(width: 100, height: 100, alignment: .center)
             .position(x: x, y: y)
             .foregroundColor(selectedColor)
             .onTapGesture {
@@ -41,10 +44,19 @@ struct ContentView: View {
 
          return Color(red:red, green: green, blue: blue)
     }
+    
+    func resetGame(){
+        time = 30
+        score = 0
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        Group {
+            ContentView()
+                .previewInterfaceOrientation(.portraitUpsideDown)
+            ContentView()
+        }
     }
 }
